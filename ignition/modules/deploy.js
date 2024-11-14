@@ -1,33 +1,35 @@
-const { ethers } = require("hardhat");
-require('dotenv').config();
+const hre = require("hardhat");
 
 async function main() {
-    const [deployer] = await ethers.getSigners();
-    
-    console.log("Deploying contracts with the account:", deployer.address);
+  // Deploy StoryNFT contract
+  const StoryNFT = await hre.ethers.getContractFactory("StoryNFT");
+  const storyNFT = await StoryNFT.deploy();
+  await storyNFT.waitForDeployment();
+  console.log("StoryNFT deployed to:", await storyNFT.getAddress());
 
-    // Deploy DIDRegistry contract
-    const DIDRegistry = await ethers.getContractFactory("DIDRegistry");
-    const didRegistry = await DIDRegistry.deploy();
-    await didRegistry.waitForDeployment(); // Updated for ethers v6
-    console.log("DIDRegistry deployed to:", await didRegistry.getAddress()); // Updated for ethers v6
+  // Deploy Voting contract
+  const Voting = await hre.ethers.getContractFactory("Voting");
+  const voting = await Voting.deploy();
+  await voting.waitForDeployment();
+  console.log("Voting deployed to:", await voting.getAddress());
 
-    // Deploy CredentialNFT contract
-    const CredentialNFT = await ethers.getContractFactory("CredentialNFT");
-    const credentialNFT = await CredentialNFT.deploy();
-    await credentialNFT.waitForDeployment(); // Updated for ethers v6
-    console.log("CredentialNFT deployed to:", await credentialNFT.getAddress()); // Updated for ethers v6
+  // Deploy GuildSystem contract
+  const GuildSystem = await hre.ethers.getContractFactory("GuildSystem");
+  const guildSystem = await GuildSystem.deploy();
+  await guildSystem.waitForDeployment();
+  console.log("GuildSystem deployed to:", await guildSystem.getAddress());
 
-    // Deploy VerificationOracle contract
-    const VerificationOracle = await ethers.getContractFactory("VerificationOracle");
-    const ccipRouter = process.env.CCIP_ROUTER_ADDRESS; // Set this in your .env file
-    const linkToken = process.env.LINK_TOKEN_ADDRESS; // Set this in your .env file
-    const verificationOracle = await VerificationOracle.deploy(ccipRouter, linkToken);
-    await verificationOracle.waitForDeployment(); // Updated for ethers v6
-    console.log("VerificationOracle deployed to:", await verificationOracle.getAddress()); // Updated for ethers v6
+  // Deploy NFTMarketplace contract
+  const NFTMarketplace = await hre.ethers.getContractFactory("NFTMarketplace");
+  const nftMarketplace = await NFTMarketplace.deploy();
+  await nftMarketplace.waitForDeployment();
+  console.log("NFTMarketplace deployed to:", await nftMarketplace.getAddress());
 }
 
-main().catch((error) => {
+// Execute deployment script
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
     console.error(error);
-    process.exitCode = 1;
-});
+    process.exit(1);
+  });
