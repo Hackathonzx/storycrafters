@@ -1,96 +1,123 @@
-# Project Name: IDSafe
-# Overview
-IDSafe is a blockchain-based identity verification system designed for refugees. It uses decentralized identifiers (DIDs) and Chainlink's Cross-Chain Interoperability Protocol (CCIP) to manage identity verification across different blockchains. The system ensures that refugees can access essential services like healthcare, education, and financial assistance through verified digital credentials.
+# StoryCrafters: Taiko Multiverse Adventure
 
-# Features
-- Decentralized Identity Management: Each refugee is assigned a unique Decentralized Identifier (DID) to manage their identity securely.
-- Cross-Chain Interoperability: Integration with Chainlink CCIP allows for seamless identity verification across multiple blockchain networks.
-- Credential Issuance and Verification: Refugees receive verifiable credentials as NFTs or tokens, which can be used to prove their identity.
-- Event Emission: The system emits events for credential issuance and cross-chain verification, ensuring transparency and traceability.
+# Table of Contents
+1. Project Overview
+2. Features
+3. Integration of Taiko OG NFT Collections
+4. Smart Contracts
+5. Architecture
+6. Getting Started
+7. Deployment
+8. Testing
+9. Usage
+10. Contributing
+11. License
 
-# How Chainlink is Used in the Project:
-In this project, Chainlink's Cross-Chain Interoperability Protocol (CCIP) is used to enable cross-chain identity verification. Specifically, Chainlink CCIP ensures that identity verification can occur across different blockchains, making the credential verification system interoperable. This is done by:
-- Emitting a cross-chain verification event that signals the credential needs to be verified on a specific chain (e.g., Avalanche).
-- Utilizing Chainlink's oracles to send verification requests and process responses between multiple blockchains securely.
+# 1. Project Overview
+StoryCrafters: Taiko Multiverse Adventure is an interactive, blockchain-based role-playing game (RPG) that merges NFT-based storytelling with community-driven gameplay. Players make choices that shape the story and unlock new paths in an evolving narrative. The project leverages the Taiko blockchain for community-driven decision-making, NFT-based character/item management, and decentralized guild-based gameplay.
 
-# Architecture
-# Smart Contracts:
-- DIDRegistry.sol: Manages the registration and retrieval of DIDs.
-- VerificationOracle.sol: Handles cross-chain verification requests using Chainlink CCIP.
-- CredentialNFT.sol: Issues and manages credentials as ERC721 NFTs.
+**Track:** Play Hard
+**Objective:** Engage players in a community-driven, decentralized storytelling RPG built on Taiko.
+**Goal:** Combine blockchain mechanics with RPG gameplay, allowing players to participate actively in shaping the story through NFT ownership, guild challenges, and a dynamic voting system.
 
-# Deployment
-Network: IntersectTestnet, Intersect network on Avalanche.
+# 2. Features
+- Community-Driven Story Choices: Players influence the storyline by voting on key decisions, recorded immutably on the Taiko blockchain.
+- NFT-Based Characters and Items: Players collect unique NFTs representing characters, items, and artifacts that affect story progression and gameplay.
+- Guild System with Competitions and Collaborations: Players can join guilds and participate in guild challenges, fostering teamwork or rivalry.
+- Dynamic Leaderboards and Achievements: Track individual and guild accomplishments, with rewards and badges for performance and participation.
+- On-Chain Minigames: Complete in-game quests, puzzles, and battles with outcomes recorded on-chain.
+- In-Game NFT Marketplace: A decentralized marketplace for trading NFTs representing in-game assets, enhancing engagement and item rarity.
 
-# Contract Addresses:
-- DIDRegistry: [0x41CD3d7753eeAD4c2d384a6C0074eA4c27dE36F1]
-- VerificationOracle: [0xf1979Ac32D086D1f3f3773fe0828d37729ed545f]
-- CredentialNFT: [0x1d8c981FD95060A45b3Cea346DbF7b5b48f5CD36]
+# 3. Integration of Taiko OG NFT Collections
+This project integrates Taiko’s official NFT collections—Taikoons, Taikonauts, and Trailblazers Badges—to foster greater engagement and enhance the gameplay experience. Players can use these exclusive NFTs within the game to:
 
-# Setup and Installation
-Clone the Repository:  git clone https://github.com/yourusername/idsafe.git
-cd <project-repo-directory>
+- Unlock Special Abilities or Roles: Each NFT type offers unique in-game advantages, enhancing the strategic and storytelling aspects.
+- Gain Guild Recognition: Members holding these OG NFTs receive exclusive guild benefits, such as early access to missions, enhanced voting power, or rewards in community challenges.
+- Boost Marketplace Visibility: Players holding Taiko OG NFTs are featured in the marketplace, making their assets more visible and fostering an interactive community economy.
 
-# Dependencies and Installation
-# Dependencies:
-Solidity Version: ^0.8.0
-OpenZeppelin Contracts:
-@openzeppelin/contracts/token/ERC721/ERC721.sol
-@openzeppelin/contracts/access/Ownable.sol
-@openzeppelin/contracts/utils/Counters.sol
-Hardhat: For local development and testing
-npm install --save-dev hardhat
-Chai: Assertion library for testing
-npm install chai
-Ethers.js: For interacting with Ethereum
-npm install ethers
-Chainlink:
-npm install @chainlink/contracts: For utilizing Chainlink CCIP for cross-chain interoperability.
-Chainlink CCIP (Cross-Chain Interoperability Protocol) for cross-chain data transmission.
-npm install @chainlink/ccip
+# 4. Smart Contracts
 
-# Installation:
-- Install the dependencies: npm install
-- Compile the smart contracts: npx hardhat compile
-- Run tests: npx hardhat test
-- Deploy the contract: npx hardhat run ignition/modules/deploy.js --network <network-name>
+The project includes four key smart contracts, each supporting a specific part of the game:
 
-# Usage
-- Issuing Credentials:
-Call issueCredentialWithMetadata(to: address, metadata: string) on the CredentialNFT contract.
+1. StoryNFT.sol: Manages minting and ownership of story-related NFTs (characters, items).
+2. Voting.sol: Facilitates on-chain voting to determine narrative progression based on player choices.
+3. GuildSystem.sol: Implements the guild mechanics, including guild creation, membership management, and tracking guild achievements.
+4. NFTMarketplace.sol: Manages listing, buying, and selling of NFTs within the game’s ecosystem.
 
-- Verifying Credentials:
-Use getCredentialMetadata(tokenId: uint256) to retrieve metadata.
+# 5. Architecture
+- Frontend: Game interface for player interaction, story visualization, and minigames.
+- Backend: Handles game logic, communicates with Taiko smart contracts for recording actions, and manages user authentication.
+- Smart Contracts: Deployed on the Taiko blockchain, providing NFT minting, voting, guild management, and marketplace functions.
+- Database: Stores player and guild stats, inventory, and achievements, synchronized with on-chain data.
 
-- Cross-Chain Verification:
-Call emitCrossChainVerificationEvent(tokenId: uint256, chain: string) to emit verification events.
+# 6. Getting Started
+**Prerequisites**
+- Node.js v14+ and npm
+- Hardhat: Ethereum development environment
+- MetaMask: Wallet for interacting with the Taiko blockchain
 
-# Testing
-- Test Framework: Hardhat
-- Tests: [Test files]
-- test/CredentialNFT.test.js: Tests for the CredentialNFT contract.
-- test/DIDRegistry.test.js: Tests for the DIDRegistry contract.
-- test/VerificationOracle.test.js: Tests for the VerificationOracle contract.
+**Installation**
+- Clone the repository:
 
-# Contributing
-- Fork the Repository:
-- Create a New Branch:
-git checkout -b feature/your-feature
-- Make Changes and Commit:
-git add .
-git commit -m "Add feature"
-Push Changes:
-git push origin feature/your-feature
+git clone https://github.com/Hackathonzx/storycrafters.git
 
-# License
-[MIT License]
+cd storycrafters
 
-# Acknowledgments
-futhmah456@gmail.com
-nathfavour02@gmail.com
+**Install dependencies:**
+- npm install
 
+# 7. Deployment
+Set up environment variables in a .env file:
 
+PRIVATE_KEY=<Your_Wallet_Private_Key>
 
+TAOKO_RPC_URL=<Your_Taiko_RPC_URL>
 
+**Compile contracts:**
+- npx hardhat compile
+- Deploy contracts:
 
+npx hardhat run ignition/modules/deploy.js --network TaikoHeklaL2
+
+Here is the deployed contract addresses: 
+
+# 8. Testing
+Run the following command to execute the test suite:
+
+npx hardhat test
+Tests are located in the test/ directory and verify functionality for all key contracts:
+
+- GuildSystem: Guild creation, joining, and retrieving guild details.
+- NFTMarketplace: NFT listing, buying, and ownership transfer.
+- StoryNFT: NFT minting, token URI validation.
+- Voting: Poll creation, voting, and vote tallying.
+
+# 9. Usage
+- Story Choices: Players can vote on critical story choices using the Voting contract. Each vote influences story progression, and choices are permanently recorded on-chain.
+
+- NFT Collection: Use the StoryNFT contract to mint and collect NFTs that represent characters, items, and artifacts in the game.
+
+- Guild Interaction: The GuildSystem contract allows players to join guilds, participate in missions, and achieve rewards, fostering teamwork and competition.
+
+- NFT Marketplace: List, buy, or trade NFTs through the NFTMarketplace contract. Items acquired or crafted within the game can be traded with other players.
+
+- Leaderboard and Achievements: Leaderboards and achievements track individual and guild progress, rewarding top performers with exclusive NFTs or badges.
+
+# 10. Contributing
+We welcome contributions from the community! To get involved:
+
+1. Fork the repository and create your feature branch (git checkout -b feature/YourFeature).
+2. Make changes and commit (git commit -m 'Add YourFeature').
+3. Push to the branch (git push origin feature/YourFeature).
+4. Open a pull request, and the team will review your submission.
+
+**Code Style**
+- Solidity: Use best practices for gas efficiency and readability.
+- JavaScript: Follow ES6+ standards, and ensure clarity and modularity.
+
+# 11. License
+This project is licensed under the MIT License. See LICENSE file for details.
+
+**Contact**
+For questions, suggestions, or collaboration inquiries, please open an issue on the GitHub repository.
 
