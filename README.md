@@ -119,5 +119,6 @@ We welcome contributions from the community! To get involved:
 This project is licensed under the MIT License. See LICENSE file for details.
 
 **Contact**
+
 For questions, suggestions, or collaboration inquiries, please open an issue on the GitHub repository.
 
