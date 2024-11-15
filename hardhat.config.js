@@ -11,6 +11,8 @@ module.exports = {
       url: process.env.RPC_URL,
       chainId: 167009,
       accounts: [process.env.PRIVATE_KEY],
+      timeout: 60000,
+      confirmations: 2
     },
   },
 };

@@ -80,6 +80,10 @@ TAOKO_RPC_URL=<Your_Taiko_RPC_URL>
 npx hardhat run ignition/modules/deploy.js --network TaikoHeklaL2
 
 Here is the deployed contract addresses: 
+- StoryNFT deployed to: 0x2Fad953E1F524e6590EdF50BDA6FCB391Dd4Fd96
+- Voting deployed to: 0x359451AC3C73827A7653C0Ab7D30243844a55447
+- GuildSystem deployed to: 0x069F92465a8795a06A28B1e85f320D57CE29Bc8F
+- NFTMarketplace deployed to: 0x7c9D4E3769FD085566de1DB20E5703D3Ec50d37f
 
 # 8. Testing
 Run the following command to execute the test suite:
