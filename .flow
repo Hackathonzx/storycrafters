@@ -1,0 +1,1 @@
+pnpm install next react react-dom @emotion/react @emotion/styled @mui/material @mui/x-data-grid @emotion/styled-engine-create-emotion tailwindcss postcss autoprefixer typescript @types/react @types/node
