@@ -48,7 +48,7 @@ const SpotlightCard = styled(Card)`
 `;
 
 export default function Home() {
-  const [currentSpotlight, setCurrentSpotlight] = useState(0);
+  const [, setCurrentSpotlight] = useState(0);
   const [theme, setTheme] = useState("light");
   const spotlightItems = [
     { title: "Guild Accomplishment 1", image: "/images/spotlight1.jpg" },
@@ -116,7 +116,7 @@ export default function Home() {
               variant="h1"
               className="text-6xl md:text-8xl font-bold text-center text-white mb-12 animate-fade-in"
             >
-              Taiko Multiverse
+              Storycrafters (Taiko) Multiverse
             </Typography>
             
             <div className="grid md:grid-cols-3 gap-6 mt-12">
