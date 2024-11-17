@@ -1,9 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StoryCrafters
+
+An immersive web-based game where players explore the multiverse, shape narratives through choices, and interact with unique NFT characters.
+
+## Features
+
+- **Interactive Story**: Influence the storyline through your decisions.
+- **NFT Characters**: Collect unique characters with special abilities.
+- **Guild System**: Form alliances and collaborate with other players.
+- **Marketplace**: Trade NFTs and exclusive items.
+- **Leaderboard**: Compete and rank against other players.
 
 ## Getting Started
 
+First, install the dependencies:
 
-First, run the development server:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
