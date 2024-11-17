@@ -3,9 +3,11 @@
 import Image from "next/image";
 import Button from "@/components/Button";
 import { useState, useEffect } from "react";
+import "@/styles/globals.css"; // Ensure the global styles are imported
 
 export default function Home() {
   const [currentSpotlight, setCurrentSpotlight] = useState(0);
+  const [theme, setTheme] = useState("light");
   const spotlightItems = [
     { title: "Guild Accomplishment 1", image: "/images/spotlight1.jpg" },
     { title: "Leaderboard Topper", image: "/images/spotlight2.jpg" },
@@ -19,8 +21,19 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    document.body.className = theme;
+  };
+
   return (
-    <div className="landing-page">
+    <div className={`landing-page ${theme}`}>
+      <header className="header">
+        <Button className="connect-wallet" onClick={() => {}}>Connect Wallet</Button>
+        <Button className="theme-switcher" onClick={toggleTheme}>
+          {theme === "light" ? "Dark Mode" : "Light Mode"}
+        </Button>
+      </header>
       <section className="hero-section">
         <div className="hero-background">
           <Image
