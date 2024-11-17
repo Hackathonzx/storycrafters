@@ -81,9 +81,20 @@ npx hardhat run ignition/modules/deploy.js --network TaikoHeklaL2
 
 Here is the deployed contract addresses: 
 - StoryNFT deployed to: 0x2Fad953E1F524e6590EdF50BDA6FCB391Dd4Fd96
+
+   - Link to the blockexplorer: https://hekla.taikoscan.io/address/0x2fad953e1f524e6590edf50bda6fcb391dd4fd96
+
 - Voting deployed to: 0x359451AC3C73827A7653C0Ab7D30243844a55447
+
+   - Link to the blockexplorer: https://hekla.taikoscan.io/address/0x359451ac3c73827a7653c0ab7d30243844a55447
+
 - GuildSystem deployed to: 0x069F92465a8795a06A28B1e85f320D57CE29Bc8F
+
+   - Link to the blockexplorer: https://hekla.taikoscan.io/address/0x069f92465a8795a06a28b1e85f320d57ce29bc8f
+
 - NFTMarketplace deployed to: 0x7c9D4E3769FD085566de1DB20E5703D3Ec50d37f
+
+   - Link to the blockexplorer: https://hekla.taikoscan.io/address/0x7c9d4e3769fd085566de1db20e5703d3ec50d37f
 
 # 8. Testing
 Run the following command to execute the test suite:
