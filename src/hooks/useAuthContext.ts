@@ -1,54 +1,40 @@
-import { useState, useEffect, createContext, useContext } from 'react';
-import { Web3Provider } from 'ethers';
-import WalletConnectProvider from '@walletconnect/web3-provider';
+import { useState, useEffect } from 'react';
+import { BrowserProvider } from 'ethers';
 
-interface AuthContextType {
-  provider: Web3Provider | null;
-  account: string | null;
-  connectWallet: () => Promise<void>;
-  disconnectWallet: () => void;
-}
-
-const AuthContext = createContext<AuthContextType | null>(null);
-AuthContext.displayName = 'AuthContext';
-
-export const AuthProvider = ({ children }) => {
-  const [provider, setProvider] = useState<WalletConnectProvider | null>(null);
-  const [account, setAccount] = useState(null);
+export function useWallet() {
+  const [account, setAccount] = useState<string | null>(null);
+  const [provider, setProvider] = useState<BrowserProvider | null>(null);
 
   const connectWallet = async () => {
     try {
-      const provider = new WalletConnectProvider({
-        infuraId: "YOUR_INFURA_ID",
-      });
-      await provider.enable();
-      const ethersProvider = new Web3Provider(provider);
-      const signer = ethersProvider.getSigner();
-      const account = await signer.getAddress();
-      setProvider(ethersProvider);
-      setAccount(account);
+      if (typeof window !== 'undefined' && window.ethereum) {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        setAccount(accounts[0]);
+        setProvider(new BrowserProvider(window.ethereum));
+      } else {
+        alert('Please install MetaMask!');
+      }
     } catch (error) {
-      console.error("Failed to connect wallet", error);
+      console.error('Error connecting wallet:', error);
     }
+  };
+
+  const disconnectWallet = () => {
+    setAccount(null);
+    setProvider(null);
   };
 
   useEffect(() => {
-    connectWallet();
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', (accounts: string[]) => {
+        setAccount(accounts[0] || null);
+      });
+
+      return () => {
+        window.ethereum.removeListener('accountsChanged', () => {});
+      };
+    }
   }, []);
 
-  const disconnectWallet = () => {
-    if (provider) {
-      provider.disconnect();
-      setProvider(null);
-      setAccount(null);
-    }
-  };
-
-  return (
-    <AuthContext.Provider value={{ provider, account, connectWallet, disconnectWallet }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-export const useAuth = () => useContext(AuthContext);
+  return { provider, account, connectWallet, disconnectWallet };
+}

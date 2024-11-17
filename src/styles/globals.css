@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Global styles */
 body {
   font-family: var(--font-geist-sans), sans-serif;
@@ -22,9 +26,11 @@ body.dark {
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -134,6 +140,7 @@ body.dark {
   position: absolute;
   opacity: 0;
   transition: opacity 1s ease;
+  animation: slideIn 0.5s ease-out forwards;
 }
 
 .spotlight-item.active {
@@ -182,4 +189,62 @@ body.dark {
 .theme-switcher:hover {
   background-color: #005bb5;
   transform: scale(1.05);
+}
+
+@layer utilities {
+  .glassmorphism {
+    @apply bg-opacity-20 backdrop-blur-lg bg-white border border-gray-200 border-opacity-20 shadow-lg;
+  }
+
+  .animate-gradient-x {
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+  }
+
+  .star {
+    @apply absolute w-1 h-1 bg-white rounded-full;
+  }
+
+  .feature-gradient {
+    @apply bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-indigo-500/10;
+  }
+  
+  .spotlight-gradient {
+    @apply bg-gradient-to-tr from-blue-500/10 via-purple-500/10 to-pink-500/10;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
+  }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
