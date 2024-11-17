@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import { useState, useEffect } from "react";
 import "@/styles/globals.css"; // Ensure the global styles are imported
 
+
 export default function Home() {
   const [currentSpotlight, setCurrentSpotlight] = useState(0);
   const [theme, setTheme] = useState("light");
