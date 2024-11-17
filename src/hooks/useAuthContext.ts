@@ -1,5 +1,14 @@
 import { useState, useEffect } from 'react';
-import { BrowserProvider } from 'ethers';
+import { BrowserProvider, Eip1193Provider } from 'ethers';
+
+declare global {
+  interface Window {
+    ethereum?: Eip1193Provider & {
+      on: (eventName: string, listener: (...args: never[]) => void) => void;
+      removeListener: (eventName: string, listener: (...args: never[]) => void) => void;
+    };
+  }
+}
 
 export function useWallet() {
   const [account, setAccount] = useState<string | null>(null);
@@ -31,7 +40,9 @@ export function useWallet() {
       });
 
       return () => {
-        window.ethereum.removeListener('accountsChanged', () => {});
+        if (window.ethereum) {
+          window.ethereum.removeListener('accountsChanged', () => {});
+        }
       };
     }
   }, []);
