@@ -38,6 +38,9 @@ const SpotlightCard = styled(Card)`
   backdrop-filter: blur(10px);
   border-radius: 16px;
   overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   transition: all 0.3s ease;
   &:hover {
     transform: scale(1.02);
@@ -218,15 +221,13 @@ export default function Home() {
             >
               Community Highlights
             </Typography>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
               {spotlightItems.map((item, index) => (
                 <SpotlightCard
                   key={index}
-                  className={`spotlight-item ${
-                    index === currentSpotlight ? 'scale-105' : 'scale-100'
-                  } transition-all duration-500`}
+                  className="w-full transition-all duration-500 hover:shadow-xl"
                 >
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative aspect-video w-full">
                     <Image
                       src={item.image}
                       alt={item.title}
@@ -235,7 +236,7 @@ export default function Home() {
                       className="transition-transform duration-500 hover:scale-110"
                     />
                   </div>
-                  <CardContent>
+                  <CardContent className="flex-grow">
                     <Typography
                       variant="h6"
                       className={`font-bold ${
@@ -243,6 +244,13 @@ export default function Home() {
                       }`}
                     >
                       {item.title}
+                    </Typography>
+                    <Typography
+                      className={`mt-2 ${
+                        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                      }`}
+                    >
+                      {`Trending #${index + 1}`}
                     </Typography>
                   </CardContent>
                 </SpotlightCard>

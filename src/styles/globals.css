@@ -137,10 +137,8 @@ body.dark {
 }
 
 .spotlight-item {
-  position: absolute;
-  opacity: 0;
-  transition: opacity 1s ease;
-  animation: slideIn 0.5s ease-out forwards;
+  opacity: 1;
+  transition: all 0.5s ease;
 }
 
 .spotlight-item.active {
