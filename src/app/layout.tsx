@@ -28,6 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <audio className="soundscape" src="/sounds/background.mp3" autoPlay loop />
         {children}
       </body>
     </html>
